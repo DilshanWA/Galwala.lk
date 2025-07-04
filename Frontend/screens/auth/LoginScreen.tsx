@@ -12,20 +12,24 @@ import {
   SafeAreaView,
   StatusBar,
   Image,
+  Alert,
   ActivityIndicator,
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { loginUser } from '../../utils/api';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
-
-  const handleLogin = () => {
-    console.log('Logging in with:', email, password);
-    // Add your login logic here
+  const handleLogin = async () => {
+    try {
+      const res = await loginUser(email, password);
+      Alert.alert('Success','Success fulll Login');
+    } catch (error) {
+      Alert.alert('Login Failed', error.message || 'Invalid credentials');
+    }
   };
 
   const navigateRegister = () => {
@@ -33,7 +37,6 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-   
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
@@ -54,8 +57,7 @@ const LoginScreen = ({ navigation }) => {
             />
 
             <Text style={styles.title}>Welcome Back!</Text>
-            <Text style={styles.subtitle}>Log in to your account</Text>
-
+            <Text style={styles.subtitle}>Please sign in to start your shopping</Text>
 
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Email</Text>
@@ -83,7 +85,6 @@ const LoginScreen = ({ navigation }) => {
               <TouchableOpacity>
                 <Text style={styles.forgotPassword}>Forgot password?</Text>
               </TouchableOpacity>
-              
             </View>
 
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
