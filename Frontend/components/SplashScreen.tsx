@@ -8,7 +8,7 @@ const SplashScreen = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('LoginScreen'); // Ensure 'Loginscreen' exists in your stack
+      navigation.navigate('RoleSelectionScreen'); // Ensure 'Loginscreen' exists in your stack
     }, 2000);
 
     return () => clearTimeout(timer);
