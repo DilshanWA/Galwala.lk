@@ -4,7 +4,7 @@ import RegisterScreen from './screens/auth/RegisterScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/auth/LoginScreen';
 import SplashScreen from './components/SplashScreen';
-import RoleSelectionScreen from './screens/roleselection/RoleSelectionScreen'
+import RoleSelectionScreen from './screens/roleselection/RoleSelectorScreen'
 
 const Stack = createNativeStackNavigator();
 
