@@ -5,11 +5,14 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const UserTypeSelectionScreen = ({ navigation }: any) => {
   const [selectedType, setSelectedType] = useState<'buyer' | 'seller' | null>(null);
 
-  const handleContinue = () => {
-    if (selectedType) {
-      navigation.navigate('SignUp', { userType: selectedType });
-    }
-  };
+const handleContinue = () => {
+  if (selectedType === 'buyer') {
+    navigation.navigate('RegisterScreen', { userType: 'buyer' });
+  } else if (selectedType === 'seller') {
+    navigation.navigate('SellerRegistration', { userType: 'seller' });
+  }
+};
+
 
   return (
     <SafeAreaView style={styles.container}>
