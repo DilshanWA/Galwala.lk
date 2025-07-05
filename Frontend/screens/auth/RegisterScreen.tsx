@@ -91,7 +91,7 @@ const RegisterScreen = ({ navigation }) => {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={navigateRegister}>
-              <Text style={styles.footerText}>Don't have an account? Sign up</Text>
+              <Text style={styles.footerText}>Don't have an account?Sign in</Text>
             </TouchableOpacity>
           </ScrollView>
         </TouchableWithoutFeedback>
