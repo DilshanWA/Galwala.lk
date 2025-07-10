@@ -6,7 +6,7 @@ import LoginScreen from './screens/auth/LoginScreen';
 import SplashScreen from './components/SplashScreen';
 import RoleSelectionScreen from './screens/roleselection/RoleSelectorScreen'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator(); 
 
 const App = () => {
   return (
@@ -14,8 +14,8 @@ const App = () => {
       <Stack.Navigator initialRouteName="SplashScreen" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
          <Stack.Screen name="RoleSelectionScreen" component={RoleSelectionScreen} />
-        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="BuyerRegister" component={RegisterScreen} />
+        <Stack.Screen name="BuyerLogin" component={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

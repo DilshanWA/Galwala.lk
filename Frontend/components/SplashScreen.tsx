@@ -17,7 +17,7 @@ const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-      <Image source={require('../assets/images/applogo.png')} style={styles.logo} />
+      <Image source={require('../assets/images/newlogo.png')} style={styles.logo} />
     </View>
   );
 };
