@@ -21,7 +21,7 @@ const SellerLogin = () => {
   const router = useRouter();
 
   const handleLogin = () => {
-    router.replace('/(seller)/dashboard');
+    router.replace('/seller/(tabs)/dashboard');
   };
 
   

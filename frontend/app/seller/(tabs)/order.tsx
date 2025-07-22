@@ -54,7 +54,6 @@ export default function OrderScreen() {
     { key: 'ready', title: 'Ready' },
     { key: 'out', title: 'Out for Delivery' },
     { key: 'delivered', title: 'Delivered' },
-    { key: 'cancelled', title: 'Cancelled' },
   ]);
 
   const renderScene = SceneMap({
@@ -63,7 +62,6 @@ export default function OrderScreen() {
     ready: () => <OrderList status="Ready" />,
     out: () => <OrderList status="Out for Delivery" />,
     delivered: () => <OrderList status="Delivered" />,
-    cancelled: () => <OrderList status="Cancelled" />,
   });
 
   return (
@@ -93,7 +91,6 @@ export default function OrderScreen() {
             scrollEnabled
             style={styles.tabBar}
             indicatorStyle={styles.indicator}
-            tabStyle={styles.label}
             activeColor="black"
             inactiveColor="#777"
           />

@@ -8,11 +8,17 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { Ionicons, FontAwesome5, Feather } from '@expo/vector-icons';
+import { Ionicons, Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { useRouter } from 'expo-router';
 
 export default function Dashboard() {
+  const router = useRouter();
+
+  const addProductHandler = () => {
+    router.push('/seller/screens/addproduct');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -33,13 +39,36 @@ export default function Dashboard() {
 
       {/* My Product Title */}
       <Text style={styles.sectionTitle}>My Product</Text>
-       
 
-      {/* Product List */}
-      
+      {/* Product List (dummy sample for now) */}
+      <FlatList
+        data={[
+          {
+            id: '1',
+            name: 'Cordless Drill',
+            category: 'Tool',
+            price: '10000.00',
+            image: 'https://img.icons8.com/ios-filled/100/000000/drill.png',
+          },
+        ]}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.productCard}>
+            <Image source={{ uri: item.image }} style={styles.productImage} />
+            <View style={{ flex: 1 }}>
+              <Text style={styles.productName}>{item.name}</Text>
+              <Text style={styles.productCategory}>Category: {item.category}</Text>
+              <Text style={styles.productPrice}>Rs : {item.price}</Text>
+            </View>
+            <TouchableOpacity>
+              <Ionicons name="create-outline" size={20} color="#333" />
+            </TouchableOpacity>
+          </View>
+        )}
+      />
 
       {/* Add Button */}
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity style={styles.addButton} onPress={addProductHandler}>
         <Text style={styles.addButtonText}>Add new item</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -81,12 +110,42 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
+  productCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 12,
+    borderRadius: 10,
+    elevation: 2,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#eee',
+  },
+  productImage: {
+    width: 60,
+    height: 60,
+    marginRight: 12,
+    resizeMode: 'contain',
+  },
+  productName: {
+    fontWeight: 'bold',
+    fontSize: 15,
+  },
+  productCategory: {
+    color: '#888',
+    fontSize: 13,
+  },
+  productPrice: {
+    fontWeight: 'bold',
+    marginTop: 4,
+  },
   addButton: {
     backgroundColor: '#FFA500',
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 0,
+    marginBottom: 30,
   },
   addButtonText: {
     color: '#000',
