@@ -1,12 +1,14 @@
 import { Tabs } from 'expo-router';
-import { FontAwesome5, Ionicons } from '@expo/vector-icons'; // Icon library
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function SellerTabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
-        tabBarActiveTintColor: '#e91e63',
+        headerShown: false,
+        tabBarActiveTintColor: '#000000ff',
       }}
     >
       <Tabs.Screen
@@ -14,7 +16,7 @@ export default function SellerTabsLayout() {
         options={{
           title: 'Dashboard',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="speedometer-outline" size={size} color={color} />
+            <MaterialIcons name="dashboard" size={25} color={color} />
           ),
         }}
       />
@@ -23,16 +25,16 @@ export default function SellerTabsLayout() {
         options={{
           title: 'Orders',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="cube-outline" size={size} color={color} />
+            <FontAwesome5 name="box-open" size={20} color={color} />
           ),
         }}
       />
-        <Tabs.Screen
+      <Tabs.Screen
         name="store"
         options={{
           title: 'Store',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="store" size={20} color="black" />
+            <FontAwesome5 name="store" size={20} color={color} />
           ),
         }}
       />
