@@ -5,83 +5,136 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
-  SafeAreaView,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import { AntDesign } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
-const RoleSelectionScreen = ({ navigation }: any) => {
+const RoleSelection = () => {
   const router = useRouter();
 
   return (
-    <LinearGradient
-      colors={['#0f0c29', '#302b63', '#24243e']}
-      style={{ flex: 1 }}
-    >
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Select Your Role</Text>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={styles.container}
+      >
+        {/* Top Banner */}
+        <LinearGradient colors={['#FFA500', '#f0ce8fff']} style={styles.banner}>
+          <Text style={styles.appTitle}>Galwala.lk</Text>
+          <Text style={styles.heading}>
+            Your Hardware{'\n'}Marketplace{'\n'}On Mobile
+          </Text>
+        </LinearGradient>
 
-        <View style={styles.cardContainer}>
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => router.push('/(auth)/buyer-login')}
-          >
-            
-            <Text style={styles.cardText}>Buyer</Text>
-          </TouchableOpacity>
+        {/* Role Selection */}
+        <View style={styles.contentWrapper}>
+          <Text style={styles.text1}>How Do You Want to Use {'\n'}Galwala.lk ?</Text>
+          <Text style={styles.appTitle}>Select Your Role</Text>
 
-          <TouchableOpacity
-            style={styles.card}
+          {/* Role Buttons */}
+
+          <View style={styles.buttonWrapper}>
+            <TouchableOpacity
+              style={styles.roleButton}
+              onPress={() => router.push('/(auth)/buyer-login')}
+            >
+              <View style={styles.innerButton}>
+                <AntDesign name="user" size={24} color="#4A4A4A" />
+                <Text style={styles.btnText}>Continue as Buyer</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+            style={[styles.roleButton, { }]} // Add light pink background
             onPress={() => router.push('/(auth)/seller-login')}
           >
-            
-            <Text style={styles.cardText}>Seller</Text>
+            <View style={styles.innerButton}>
+              <AntDesign name="shoppingcart" size={24} color="#4A4A4A" />
+              <Text style={styles.btnText}>Continue as Seller</Text>
+            </View>
           </TouchableOpacity>
+
+          </View>
         </View>
-      </SafeAreaView>
-    </LinearGradient>
+      </KeyboardAvoidingView>
+      <Text style={styles.versionText}>Version 1.0.0</Text>
+    </ScrollView>
   );
 };
 
-export default RoleSelectionScreen;
+export default RoleSelection;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    backgroundColor: '#F5F7FA',
   },
-  title: {
-    fontSize: 28,
-    color: '#fff',
+  banner: {
+    height: 380,
+    borderBottomRightRadius: 100,
+    paddingHorizontal: 24,
+    paddingTop: 60,
+    justifyContent: 'center',
+  },
+  appTitle: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: '300',
+    marginBottom: 20,
+  },
+  heading: {
+    color: '#000',
+    fontSize: 32,
+    fontWeight: '700',
+    lineHeight: 40,
+  },
+  contentWrapper: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 80,
+  },
+  text1: {
+    fontSize: 19,
+    color: '#222',
+    marginBottom: 5,
     fontWeight: 'bold',
-    marginBottom: 40,
+    textAlign: 'left',
   },
-  cardContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  card: {
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    width: width * 0.8,
-    height: width * 0.2,
-    borderRadius: 8,
-    justifyContent: 'center',
+  buttonWrapper: {
     marginTop: 20,
-    padding: 20,
-    alignItems: 'center',
-    marginHorizontal: 20,
-    borderWidth: 1,
-    borderColor: '#ffffff30',
+    width: '100%',
+    gap: 30,
   },
-  cardText: {
-    color: '#fff',
-    marginTop: 10,
+  roleButton: {
+    borderRadius: 15,
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderColor: '#000',
+    borderWidth: 1,
+  },
+  innerButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  btnText: {
     fontSize: 18,
+    color: '#333',
     fontWeight: '600',
   },
+  versionText: {
+    textAlign: 'center',
+    color: '#888',
+    fontSize: 14,
+    marginTop: 40,
+  marginBottom: 20,
+ },
+
 });

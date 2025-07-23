@@ -5,15 +5,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Splash = () => {
   const router = useRouter();
-
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace('/');
-    }, 2000); // Navigate after 2 seconds
+      router.replace('/'); // Navigate to seller login after splash
+    }, 2000); // Adjust the duration as needed
 
-    return () => clearTimeout(timer); // Cleanup the timer on unmount
+    return () => clearTimeout(timer); // Cleanup on unmount
   }, [router]);
-  
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -36,8 +34,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 250,
-    height: 250,
+    width: 200,
+    height: 200,
     resizeMode: 'contain',
   },
 });
