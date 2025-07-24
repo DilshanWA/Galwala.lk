@@ -3,153 +3,199 @@ import {
   View,
   Text,
   StyleSheet,
-  TextInput,
-  FlatList,
-  Image,
   TouchableOpacity,
+  ScrollView,
+  Image,
 } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
-export default function Dashboard() {
-  const router = useRouter();
-
-  const addProductHandler = () => {
-    router.push('/seller/screens/addproduct');
-  };
-
+const SellerDashboard = () => {
+ const router = useRouter();
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Ionicons name="menu" size={24} color="black" />
-        <Text style={styles.headerTitle}>Seller Dashboard</Text>
-        <Ionicons name="notifications-outline" size={24} color="red" />
+        <Text style={styles.headerTitle}>Seller Center</Text>
+        <View style={styles.headerIcons}>
+          <TouchableOpacity>
+            <AntDesign name="notification" size={24} color="#000" />
+          </TouchableOpacity>
+        </View>
       </View>
 
-      {/* Search bar */}
-      <View style={styles.searchBar}>
-        <TextInput
-          placeholder="Search Your Products"
-          style={styles.searchInput}
-        />
-        <Feather name="search" size={20} color="#888" />
+      {/* Profile */}
+      <View style={styles.profile}>
+        <View style={styles.avatar} />
+        <View>
+          <Text style={styles.username}>Sunil Hardware</Text>
+          <Text style={styles.followers}>Followers 0</Text>
+        </View>
       </View>
 
-      {/* My Product Title */}
-      <Text style={styles.sectionTitle}>My Product</Text>
-
-      {/* Product List (dummy sample for now) */}
-      <FlatList
-        data={[
-          {
-            id: '1',
-            name: 'Cordless Drill',
-            category: 'Tool',
-            price: '10000.00',
-            image: 'https://img.icons8.com/ios-filled/100/000000/drill.png',
-          },
-        ]}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.productCard}>
-            <Image source={{ uri: item.image }} style={styles.productImage} />
-            <View style={{ flex: 1 }}>
-              <Text style={styles.productName}>{item.name}</Text>
-              <Text style={styles.productCategory}>Category: {item.category}</Text>
-              <Text style={styles.productPrice}>Rs : {item.price}</Text>
-            </View>
-            <TouchableOpacity>
-              <Ionicons name="create-outline" size={20} color="#333" />
+      {/* Orders */}
+      <View style={styles.ordersCard}>
+        <View style={styles.orderHeader}>
+          <Text style={styles.orderTitle}>Order</Text>
+          <Text style={styles.orderTime}>📅 24/07/2025 20:51:36</Text>
+        </View>
+        <View style={styles.orderStats}>
+          {['To Process', 'Shipping', 'Review'].map((label, i) => (
+            <TouchableOpacity key={i} style={styles.orderItem}>
+              <Text style={styles.orderNumber}>0</Text>
+              <Text>{label}</Text>
             </TouchableOpacity>
-          </View>
-        )}
-      />
+          ))}
+        </View>
+      </View>
 
-      {/* Add Button */}
-      <TouchableOpacity style={styles.addButton} onPress={addProductHandler}>
-        <Text style={styles.addButtonText}>Add new item</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+      {/* Steps */}
+      <View style={styles.stepsCard}>
+
+        {/* Upload product card */}
+        <View style={styles.uploadCard}>
+          <Text style={styles.uploadTitle}>Upload products</Text>
+          <Text style={styles.uploadDesc}>
+            Upload the images and details of your first product.
+          </Text>
+          <TouchableOpacity style={styles.addBtn} onPress={() => {router.push('/seller/screens/addproduct')} }>
+            <Text style={styles.addBtnText}>Add</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
-}
+};
+
+export default SellerDashboard;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
+    backgroundColor: '#f7f8fa',
+    padding: 16,
   },
   header: {
-    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  searchBar: {
-    flexDirection: 'row',
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 2,
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 14,
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 20,
-    marginBottom: 10,
-  },
-  productCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 12,
-    borderRadius: 10,
-    elevation: 2,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#eee',
-  },
-  productImage: {
-    width: 60,
-    height: 60,
-    marginRight: 12,
-    resizeMode: 'contain',
-  },
-  productName: {
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  productCategory: {
-    color: '#888',
-    fontSize: 13,
-  },
-  productPrice: {
-    fontWeight: 'bold',
-    marginTop: 4,
-  },
-  addButton: {
-    backgroundColor: '#FFA500',
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 0,
+    marginTop: 40,
     marginBottom: 30,
   },
-  addButtonText: {
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '700',
     color: '#000',
+  },
+  headerIcons: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  icon: {
+    fontSize: 20,
+  },
+  profile: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    gap: 12,
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    backgroundColor: '#ddd',
+    borderRadius: 25,
+  },
+  username: {
     fontWeight: '600',
-    fontSize: 15,
+    fontSize: 16,
+  },
+  followers: {
+    fontSize: 12,
+    color: '#999',
+  },
+  ordersCard: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    elevation: 2,
+  },
+  orderHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  orderTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  orderTime: {
+    fontSize: 12,
+    color: '#888',
+  },
+  orderStats: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  orderItem: {
+    alignItems: 'center',
+  },
+  orderNumber: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#FFA500',
+  },
+  stepsCard: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 32,
+  },
+  stepTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 12,
+  },
+  stepItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffe8d6',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 8,
+  },
+
+  stepText: {
+    fontSize: 14,
+  },
+
+  uploadCard: {
+    marginTop: 12,
+    borderColor: '#000',
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+  uploadTitle: {
+    fontWeight: '600',
+    marginBottom: 6,
+  },
+  uploadDesc: {
+    fontSize: 13,
+    color: '#444',
+    marginBottom: 12,
+  },
+  addBtn: {
+    backgroundColor: '#000',
+    borderRadius: 20,
+    paddingVertical: 8,
+    paddingHorizontal: 24,
+    alignSelf: 'flex-start',
+  },
+  addBtnText: {
+    color: '#fff',
+    fontWeight: '600',
   },
 });

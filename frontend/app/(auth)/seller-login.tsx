@@ -16,7 +16,7 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to</Text>
-      <Text style={styles.subtitle}>Galwala.lk Seller Center</Text>
+      <Text style={styles.subtitle}>Galwala Seller Center</Text>
 
       <Text style={styles.label}>Log in or Register with mobile number</Text>
 
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   phoneInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#FFA500',
+    borderColor: '#a5a5a5ff',
     borderWidth: 1,
     borderRadius: 12,
     paddingHorizontal: 12,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   passwordInput: {
-    borderColor: '#FFA500',
+    borderColor: '#a5a5a5ff',
     borderWidth: 1,
     borderRadius: 12,
     fontSize: 16,
