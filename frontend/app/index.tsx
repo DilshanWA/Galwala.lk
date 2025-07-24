@@ -8,12 +8,12 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Image,
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { AntDesign } from '@expo/vector-icons';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const RoleSelection = () => {
   const router = useRouter();
@@ -24,20 +24,26 @@ const RoleSelection = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.container}
       >
-        {/* Top Banner */}
-        <LinearGradient colors={['#FFA500', '#f0ce8fff']} style={styles.banner}>
-          <Text style={styles.appTitle}>Galwala.lk</Text>
-          <Text style={styles.heading}>
-            Your Hardware{'\n'}Marketplace{'\n'}On Mobile
+        {/* Top Orange Section */}
+        <View style={styles.header}>
+          <View style={styles.headerText}>
+            <Text style={styles.headerTitle1}>Welcome to {'\n'}Galwala.lk</Text>
+            <Text>Hardware ai your Doorstep</Text>
+          </View>
+          <Image
+            source={require('../assets/images/header_illustrator.png')}
+            style={styles.headerImage}
+            resizeMode="contain"
+          />
+        </View>
+
+        {/* Bottom White Section */}
+        <View style={styles.bottomSection}>
+          <Text style={styles.mainTitle}>
+            How do you want to use{"\n"}
+            <Text style={styles.brand}>Galwala.lk</Text>?
           </Text>
-        </LinearGradient>
-
-        {/* Role Selection */}
-        <View style={styles.contentWrapper}>
-          <Text style={styles.text1}>How Do You Want to Use {'\n'}Galwala.lk ?</Text>
-          <Text style={styles.appTitle}>Select Your Role</Text>
-
-          {/* Role Buttons */}
+          <Text style={styles.subTitle}>select your role to continue</Text>
 
           <View style={styles.buttonWrapper}>
             <TouchableOpacity
@@ -45,7 +51,7 @@ const RoleSelection = () => {
               onPress={() => router.push('/(auth)/buyer-login')}
             >
               <View style={styles.innerButton}>
-                <AntDesign name="user" size={24} color="#4A4A4A" />
+                <AntDesign name="user" size={24} color="#fff" />
                 <Text style={styles.btnText}>Continue as Buyer</Text>
               </View>
             </TouchableOpacity>
@@ -55,15 +61,16 @@ const RoleSelection = () => {
             onPress={() => router.push('/(auth)/seller-login')}
           >
             <View style={styles.innerButton}>
-              <AntDesign name="shoppingcart" size={24} color="#4A4A4A" />
+              <AntDesign name="shoppingcart" size={24} color="#fff" />
               <Text style={styles.btnText}>Continue as Seller</Text>
             </View>
           </TouchableOpacity>
 
           </View>
+
+          <Text style={styles.version}>Version 1.0.0</Text>
         </View>
       </KeyboardAvoidingView>
-      <Text style={styles.versionText}>Version 1.0.0</Text>
     </ScrollView>
   );
 };
@@ -73,38 +80,57 @@ export default RoleSelection;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F7FA',
+    backgroundColor: '#FFA500',
   },
-  banner: {
-    height: 380,
-    borderBottomRightRadius: 100,
-    paddingHorizontal: 24,
+  header: {
+    flexDirection: 'row',
     paddingTop: 60,
-    justifyContent: 'center',
-  },
-  appTitle: {
-    color: '#000',
-    fontSize: 16,
-    fontWeight: '300',
-    marginBottom: 20,
-  },
-  heading: {
-    color: '#000',
-    fontSize: 32,
-    fontWeight: '700',
-    lineHeight: 40,
-  },
-  contentWrapper: {
-    flex: 1,
     paddingHorizontal: 24,
-    paddingTop: 80,
+    height: height * 0.4,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  text1: {
-    fontSize: 19,
-    color: '#222',
-    marginBottom: 5,
+  headerText: {
+    paddingRight: 0,
+  },
+  headerTitle1: {
+    fontSize: 25,
     fontWeight: 'bold',
-    textAlign: 'left',
+    color: '#000',
+    marginBottom: 2,
+  },
+  headerImage: {
+    width: width * 0.8,
+    height: width * 1,
+    marginLeft: -52,
+    top: 20
+  },
+  bottomSection: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderTopRightRadius: 100,
+    marginTop: -50,
+    paddingHorizontal: 24,
+    paddingTop: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mainTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#000',
+    marginBottom: 8,
+  },
+  brand: {
+    color: '#000',
+    fontWeight: 'bold',
+  },
+  subTitle: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 30,
+    textAlign: 'center',
   },
   buttonWrapper: {
     marginTop: 20,
@@ -115,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingVertical: 16,
     paddingHorizontal: 20,
-    borderColor: '#000',
+    backgroundColor: 'black',
     borderWidth: 1,
   },
   innerButton: {
@@ -125,16 +151,14 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   btnText: {
-    fontSize: 18,
-    color: '#333',
+    fontSize: 16,
+    color: '#fff',
     fontWeight: '600',
   },
-  versionText: {
-    textAlign: 'center',
-    color: '#888',
+  version: {
     fontSize: 14,
-    marginTop: 40,
-  marginBottom: 20,
- },
-
+    color: '#888',
+    top: 100,
+    marginBottom: 10,
+  },
 });
