@@ -28,7 +28,7 @@ const RoleSelection = () => {
         <View style={styles.header}>
           <View style={styles.headerText}>
             <Text style={styles.headerTitle1}>Welcome to {'\n'}Galwala.lk</Text>
-            <Text>Hardware ai your Doorstep</Text>
+            <Text style={{fontSize: 13}}>Hardware ai your Doorstep</Text>
           </View>
           <Image
             source={require('../assets/images/header_illustrator.png')}
@@ -47,22 +47,22 @@ const RoleSelection = () => {
 
           <View style={styles.buttonWrapper}>
             <TouchableOpacity
-              style={styles.roleButton}
+              style={[styles.roleButton]}
               onPress={() => router.push('/(auth)/buyer-login')}
             >
-              <View style={styles.innerButton}>
+              <View style={[styles.innerButton]}>
                 <AntDesign name="user" size={24} color="#fff" />
                 <Text style={styles.btnText}>Continue as Buyer</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity
-            style={[styles.roleButton, { }]} // Add light pink background
+            style={[styles.roleButton, { backgroundColor: 'transperant'  }]} // Add light pink background
             onPress={() => router.push('/(auth)/seller-login')}
           >
             <View style={styles.innerButton}>
-              <AntDesign name="shoppingcart" size={24} color="#fff" />
-              <Text style={styles.btnText}>Continue as Seller</Text>
+              <AntDesign name="shoppingcart" size={24} color="#000" />
+              <Text style={[styles.btnText,{color: '#000'}]}>Continue as Seller</Text>
             </View>
           </TouchableOpacity>
 
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 60,
     paddingHorizontal: 24,
-    height: height * 0.4,
+    height: 300,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 100,
     marginTop: -50,
     paddingHorizontal: 24,
-    paddingTop: 50,
+    paddingTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
     gap: 30,
   },
   roleButton: {
-    borderRadius: 15,
-    paddingVertical: 16,
+    borderRadius: 10,
+    paddingVertical: 13,
     paddingHorizontal: 20,
     backgroundColor: 'black',
     borderWidth: 1,
